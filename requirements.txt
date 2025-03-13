@@ -1,0 +1,15 @@
+The output of bcrypt.hashpw() depends on the following factors:
+
+1. Input Password:
+The password being hashed must be provided as a bytes object. Different passwords will result in entirely different hashes.
+2. Salt:
+bcrypt.gensalt() generates a random salt for each hash operation. Even if the same password is hashed multiple times, the resulting hashes will differ due to the randomness of the salt.
+You can also provide a fixed salt if needed, but this is generally discouraged as it reduces security.
+3. Work Factor (Cost Factor):
+The bcrypt.gensalt(rounds) function allows you to specify the computational cost (default is 12 rounds). A higher number of rounds increases the time required to generate and verify a hash, enhancing security but requiring more processing power.
+python
+Copy
+Edit
+bcrypt.gensalt(rounds=14)  # Example with 14 rounds
+4. Hashing Algorithm:
+bcrypt uses the Blowfish algorithm internally. The algorithm ensures that small changes in the input produce vastly different outputs, making it cryptographically secure.
